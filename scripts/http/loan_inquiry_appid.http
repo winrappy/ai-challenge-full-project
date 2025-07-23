@@ -1,0 +1,1 @@
+GET http://localhost:30090/api/v1/loans/218a01be-998a-4dc3-bc93-8ddda5478df1 HTTP/1.1

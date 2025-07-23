@@ -1,0 +1,63 @@
+version: "3.8"
+
+services:
+  frontend:
+    image: team036-frontend:latest
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "30080:30080"
+    depends_on:
+      - backend
+    networks:
+      - loan-app-network
+
+  backend:
+    image: team036-backend:latest
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    volumes:
+      - ./backend/configs:/app/configs:ro
+    ports:
+      - "30090:30090"
+    environment:
+      - DB_HOST=db
+      - DB_PORT=5432
+      - DB_USER=postgres
+      - DB_PASS=postgres
+      - DB_NAME=loans
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: on-failure
+    networks:
+      - loan-app-network
+
+  db:
+    image: postgres:alpine
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=loans
+    ports:
+      - "30050:5432"
+    volumes:
+      - ./scripts/sql/create_tbl_loan.sql:/docker-entrypoint-initdb.d/create_tbl_loan.sql:ro
+      - db_data:/var/lib/postgresql/data
+    networks:
+      - loan-app-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  db_data:
+
+networks:
+  loan-app-network:
+    driver: bridge

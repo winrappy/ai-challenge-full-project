@@ -1,0 +1,2 @@
+GET http://localhost:30090/api/v1/loans?page=12&limit=3 HTTP/1.1gpg --list-secret-keys --keyid-format LONG <EMAIL>
+# GET http://localhost:30090/api/v1/loans?purpose=car&page=12&limit=3 HTTP/1.1

@@ -1,0 +1,12 @@
+POST http://localhost:30090/api/v1/loans HTTP/1.1
+Content-Type: application/json
+
+{
+	"fullName": "Somkanit Jitsanook",
+	"monthlyIncome": 50000,
+    "loanAmount": 240000,
+    "loanPurpose": "education",
+    "age": 30,
+    "phoneNumber": "0851234567",
+    "email": "demo@example.com"
+}
