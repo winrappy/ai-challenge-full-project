@@ -2,6 +2,15 @@
 
 this all text generate with AI ...OMG
 
+this project can start with follow command
+```
+make start
+```
+
+and enjoin!!!
+
+*** NOTE: project must have tool of kubernetes etc colima, minikube ***
+
 #### Key Lessons Learned
 - **Development with AI**: Using AI can help reduce time, decrease the chances of errors, and assist in verifying correctness, such as code review and automatic code refactoring.
 - **Deploy Practices**: Learned how to use the Colima tool to simulate a small-scale production environment on a local machine and configuring Kubernetes for deployment customization.
